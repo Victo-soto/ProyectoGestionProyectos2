@@ -27,8 +27,8 @@ include './header.php';
                     <!--INICIO DE ESTADO DE PEDIDOS-->
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Lista de categoria</h3>
-                            <button class="btn  btn-success btn-sm float-right">Nueva Categoria</button>
+                            <h3 class="card-title">Lista de categoria</h3>                            
+                            <button type="button" class="btn  btn-success btn-sm float-right" data-toggle="modal" data-target="#modal-default">Nueva Categoria</button>
                         </div>
                         <?php
                         $categoria = new ControllerCategoria();
@@ -52,24 +52,60 @@ include './header.php';
                                         ?>
                                         <tr>
                                             <td><?php echo $cat['idcategoria']; ?></td>
-                                            <td>Mozilla 1.8</td>
-                                            <td>Win 98+ / OSX.1+</td>
-                                            <td>1.8</td>
-                                            <td>A</td>
+                                            <td><?php echo $cat['nombrecategoria']; ?></td>
+                                            <td><?php echo $cat['descripcion']; ?></td>
+                                            <td><?php echo $cat['estado']; ?></td>
+                                            <td>
+                                                <button type="button" class="btn  btn-success" data-toggle="modal" data-target="#modal-default"><i class="fas fa-pen-square"></i></button>
+                                                <a class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
+                                            </td>
                                         </tr> 
                                     <?php } ?>
-                                        </tbody>                                
-                                    </table>
-                                </div>
-                                <!-- /.card-body -->
-                            </div> 
+                                </tbody>                                
+                            </table>
                         </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <div class="modal fade" id="modal-default">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Nueva Categoria</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <form>
+                                    <div class="modal-body">
+
+                                        <div class="card-body">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Nombre Categoria</label>
+                                                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Nombre Categoria">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputPassword1">Descripción</label>
+                                                <textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>                                               
+                                            </div>                                                                                      
+                                        </div> 
+                                    </div>
+                                    <div class="modal-footer justify-content-between">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- /.modal-content -->
+                        </div>
+                        <!-- /.modal-dialog -->
                     </div>
                 </div>
-            </section>   
-            <?php
-            include './footer.php';
-            ?> 
+            </div>
+        </div>
+    </section>   
+    <?php
+    include './footer.php';
+    ?> 
     <script>
         $(function () {
             $("#example1").DataTable({
