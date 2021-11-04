@@ -1,3 +1,22 @@
+<?php
+session_start();
+if (isset($_POST['ingresar'])){
+    include '../models/Usuario.php';
+    $empleado = new Usuario();
+    $empleado->setNombreUsuario($_POST['usuario']);
+    $empleado->setPassword($_POST['password']);
+    
+    if($empleado->ValidarUsuario()){
+//        $_SESSION['nombre']= $empleado->getNombres();
+//        $_SESSION['apellido']=$empleado->getApellidos();       
+//        $_SESSION['tipo_usuarios']=$empleado->getTipo_usuario();
+        header("Location: ../views/index.php");
+    }
+    else{
+        header("Location: ../views/login.php");
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,9 +43,9 @@
     <div class="card-body">
       <p class="login-box-msg">abel veneca</p>
 
-      <form action="../../index3.html" method="post">
+      <form method="post">
         <div class="input-group mb-3">
-          <input type="email" class="form-control" placeholder="Email">
+            <input type="text" name="usuario" class="form-control" placeholder="Email">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -34,7 +53,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="Password">
+            <input type="password" name="password" class="form-control" placeholder="Password">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -43,11 +62,11 @@
         </div>
         <div class="row">
           <div class="col-6">
-            <button type="submit" class="btn btn-primary btn-block">Ingresar</button>
+              <button type="submit" name="ingresar" class="btn btn-primary btn-block">Ingresar</button>
           </div>
           <!-- /.col -->
           <div class="col-6">
-            <button type="submit" class="btn btn-danger btn-block">cancelar</button>
+              <button type="reset" class="btn btn-danger btn-block">cancelar</button>
           </div>
           <!-- /.col -->
         </div>

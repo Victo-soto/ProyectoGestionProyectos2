@@ -1,6 +1,6 @@
 <?php
 
-class ConexionDB {
+class Conexion {
 
     private $dsn = "mysql:host=localhost;dbname=inventory";
     private $user = "root";
