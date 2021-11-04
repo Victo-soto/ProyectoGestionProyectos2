@@ -22,7 +22,7 @@
       <a href="../../index2.html" class="h1"><b>Admin</b>LTE</a>
     </div>
     <div class="card-body">
-      <p class="login-box-msg">Regístrese para iniciar su sesión</p>
+      <p class="login-box-msg">abel veneca</p>
 
       <form action="../../index3.html" method="post">
         <div class="input-group mb-3">
