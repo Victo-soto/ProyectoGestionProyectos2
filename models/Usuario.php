@@ -128,5 +128,26 @@ class Usuario {
         $this->Updated = $Updated;
     }
 
+    public function ValidarUsuario() {
+        include '../bd/Conexion.php';
+        $conexion = new Conexion();
+        $conn = $conexion->abrirConexion();
+        try {
+            $result = $conn->prepare('SELECT idusuario,nombres,apellidos,dni,correo,cargo,direccion,telefono,nombreusuario,password,estado,foto FROM usuarios '
+                    . ' where nombreusuario=:nombre'
+                    . ' AND password=:password');
+            $result->bindParam(":nombre", $this->NombreUsuario);
+            $result->bindParam(":password", $this->Password);
+            $result->execute();
+            $usu = $result->fetch(PDO::FETCH_ASSOC);
+            $this->setNombres($usu['nombres']);
+//            $this->setApellidos($usu['apellidos']);
+//            $this->setTipo_usuario($usu['tipo_usuario']);
+            return $result->rowcount();
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+        $conexion->cerrarConexion();
+    }
 
 }

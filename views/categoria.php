@@ -1,4 +1,5 @@
 <?php
+include "../bd/autoload.php";
 include './header.php';
 ?>
 <div class="content-wrapper">
@@ -29,108 +30,46 @@ include './header.php';
                             <h3 class="card-title">Lista de categoria</h3>
                             <button class="btn  btn-success btn-sm float-right">Nueva Categoria</button>
                         </div>
+                        <?php
+                        $categoria = new ControllerCategoria();
+                        $newCategoria = $categoria->mostrarCategoria();
+                        ?>
                         <!-- /.card-header -->
                         <div class="card-body">
                             <table id="example2" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
-                                        <th>Codigo</th>
+                                        <th>ID CATEGORIA</th>
                                         <th>Nombre Categoria</th>
                                         <th>Descripcion</th>
                                         <th>Estado</th>
                                         <th>Acciones</th>
                                     </tr>
                                 </thead>
-                                <tbody>     
-                                    <tr>
-                                        <td>Gecko</td>
-                                        <td>Mozilla 1.8</td>
-                                        <td>Win 98+ / OSX.1+</td>
-                                        <td>1.8</td>
-                                        <td>A</td>
-                                    </tr>
-                                    <tr>
-                                        <td>cat</td>
-                                        <td>Seamonkey 1.1</td>
-                                        <td>Win 98+ / OSX.2+</td>
-                                        <td>1.8</td>
-                                        <td>A</td>
-                                    </tr>
-                                    <tr>
-                                        <td>cat</td>
-                                        <td>Seamonkey 1.1</td>
-                                        <td>Win 98+ / OSX.2+</td>
-                                        <td>1.8</td>
-                                        <td>A</td>
-                                    </tr>
-                                    <tr>
-                                        <td>cat</td>
-                                        <td>Seamonkey 1.1</td>
-                                        <td>Win 98+ / OSX.2+</td>
-                                        <td>1.8</td>
-                                        <td>A</td>
-                                    </tr>
-                                    <tr>
-                                        <td>cat</td>
-                                        <td>Seamonkey 1.1</td>
-                                        <td>Win 98+ / OSX.2+</td>
-                                        <td>1.8</td>
-                                        <td>A</td>
-                                    </tr>
-                                    <tr>
-                                        <td>cat</td>
-                                        <td>Seamonkey 1.1</td>
-                                        <td>Win 98+ / OSX.2+</td>
-                                        <td>1.8</td>
-                                        <td>A</td>
-                                    </tr>
-                                    <tr>
-                                        <td>cat</td>
-                                        <td>Seamonkey 1.1</td>
-                                        <td>Win 98+ / OSX.2+</td>
-                                        <td>1.8</td>
-                                        <td>A</td>
-                                    </tr>
-                                    <tr>
-                                        <td>cat</td>
-                                        <td>Seamonkey 1.1</td>
-                                        <td>Win 98+ / OSX.2+</td>
-                                        <td>1.8</td>
-                                        <td>A</td>
-                                    </tr>
-                                    <tr>
-                                        <td>cat</td>
-                                        <td>Seamonkey 1.1</td>
-                                        <td>Win 98+ / OSX.2+</td>
-                                        <td>1.8</td>
-                                        <td>A</td>
-                                    </tr>
-                                    <tr>
-                                        <td>cat</td>
-                                        <td>Seamonkey 1.1</td>
-                                        <td>Win 98+ / OSX.2+</td>
-                                        <td>1.8</td>
-                                        <td>A</td>
-                                    </tr>
-                                    <tr>
-                                        <td>cat</td>
-                                        <td>Seamonkey 1.1</td>
-                                        <td>Win 98+ / OSX.2+</td>
-                                        <td>1.8</td>
-                                        <td>A</td>
-                                    </tr>
-                                </tbody>                                
-                            </table>
+                                <tbody>  
+                                    <?php
+                                    foreach ($newCategoria as $cat) {
+                                        ?>
+                                        <tr>
+                                            <td><?php echo $cat['idcategoria']; ?></td>
+                                            <td>Mozilla 1.8</td>
+                                            <td>Win 98+ / OSX.1+</td>
+                                            <td>1.8</td>
+                                            <td>A</td>
+                                        </tr> 
+                                    <?php } ?>
+                                        </tbody>                                
+                                    </table>
+                                </div>
+                                <!-- /.card-body -->
+                            </div> 
                         </div>
-                        <!-- /.card-body -->
-                    </div> 
+                    </div>
                 </div>
-            </div>
-        </div>
-    </section>   
-    <?php
-    include './footer.php';
-    ?> 
+            </section>   
+            <?php
+            include './footer.php';
+            ?> 
     <script>
         $(function () {
             $("#example1").DataTable({
@@ -146,19 +85,19 @@ include './header.php';
                 "autoWidth": true,
                 "responsive": true,
                 'language': {
-                "lengthMenu": "Mostrar _MENU_ registros por página.",
-                "zeroRecords": "Lo sentimos. No se encontraron registros.",
-                "sInfo": "Mostrando: _START_ de _END_ - Total registros: _TOTAL_ ",
-                "infoEmpty": "No hay registros aún.",
-                "infoFiltered": "(filtrados de un total de _MAX_ registros)",
-                "search": "Búsqueda",
-                "LoadingRecords": "Cargando ...",
-                "Processing": "Procesando...",
-                "SearchPlaceholder": "Comience a teclear...",
-                "paginate": {
-                    "previous": "Anterior",
-                    "next": "Siguiente",
-                }}
+                    "lengthMenu": "Mostrar _MENU_ registros por página.",
+                    "zeroRecords": "Lo sentimos. No se encontraron registros.",
+                    "sInfo": "Mostrando: _START_ de _END_ - Total registros: _TOTAL_ ",
+                    "infoEmpty": "No hay registros aún.",
+                    "infoFiltered": "(filtrados de un total de _MAX_ registros)",
+                    "search": "Búsqueda",
+                    "LoadingRecords": "Cargando ...",
+                    "Processing": "Procesando...",
+                    "SearchPlaceholder": "Comience a teclear...",
+                    "paginate": {
+                        "previous": "Anterior",
+                        "next": "Siguiente",
+                    }}
             });
         });
     </script>
