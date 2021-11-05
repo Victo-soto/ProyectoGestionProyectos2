@@ -20,12 +20,12 @@ if(isset($_GET['idC'])){
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">CATEGORIAS</h1>
+                    <h1 class="m-0">PRODUCTOS</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="index.php">Inicio</a></li>
-                        <li class="breadcrumb-item active">Categorias</li>
+                        <li class="breadcrumb-item active">pRODUCTOS</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -38,11 +38,11 @@ if(isset($_GET['idC'])){
                 <div class="col-md-12">
                     <div class="card card-info">
                         <div class="card-header">
-                            <h3 class="card-title">Nueva Categoria</h3>
+                            <h3 class="card-title">Nueva Producto</h3>
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form class="form-horizontal" method="POST">                           
+                        <form  method="POST">                           
                             <?php
                             if (isset($_GET['id'])) {
                                 $buscadorid = new ControllerCategoria();
@@ -84,26 +84,69 @@ if(isset($_GET['idC'])){
                                 ?>
                                 <div class="card-body">
                                     <div class="form-group row">
-                                        <label for="inputEmail3" class="col-sm-2 col-form-label">Nombre Categoria</label>
-                                        <div class="col-sm-10">          
+                                        <label for="inputEmail3" class="col-sm-2 col-form-label">Nom Producto</label>
+                                        <div class="col-sm-4">          
                                             <input type="text" class="form-control" name="nombre" id="inputEmail3" placeholder="Nombre Categoria">
                                         </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="inputPassword3" class="col-sm-2 col-form-label">Descripción</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" name="descripcion" class="form-control" id="inputEmail3" placeholder="Descripcion">
+                                        
+                                        <label for="inputEmail3" class="col-sm-2 col-form-label">Descripción</label>
+                                        <div class="col-sm-4">          
+                                            <input type="text" class="form-control" name="nombre" id="inputEmail3" placeholder="Nombre Categoria">
                                         </div>
-                                    </div> 
+                                    </div>                                                                    
                                     <div class="form-group row">
-                                        <label for="inputPassword3" class="col-sm-2 col-form-label">Estado</label>
-                                        <div class="col-sm-10">
+                                        <label for="inputPassword3" class="col-sm-2 col-form-label">Proveedor</label>
+                                        <div class="col-sm-4">
                                             <select class="form-control" name="estado">
                                                 <option>SELECCIONAR</option>
                                                 <option value="1">ACTIVO</option>
                                                 <option value="0">INACTIVO</option>                                               
                                             </select>
                                         </div>
+                                        
+                                        <label for="inputPassword3" class="col-sm-2 col-form-label">Categoria</label>
+                                        <div class="col-sm-4">
+                                            <select class="form-control" name="estado">
+                                                <option>SELECCIONAR</option>
+                                                <option value="1">ACTIVO</option>
+                                                <option value="0">INACTIVO</option>                                               
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="inputPassword3" class="col-sm-2 col-form-label">Uni Medida</label>
+                                        <div class="col-sm-4">
+                                            <select class="form-control" name="estado">
+                                                <option>SELECCIONAR</option>
+                                                <option value="1">ACTIVO</option>
+                                                <option value="0">INACTIVO</option>                                               
+                                            </select>
+                                        </div>
+                                        <label for="inputPassword3" class="col-sm-2 col-form-label">Cantidad</label>
+                                        <div class="col-sm-4">
+                                            <input type="number" class="form-control" name="nombre" id="inputEmail3" placeholder="Nombre Categoria">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="inputEmail3" class="col-sm-2 col-form-label">Precio Compra</label>
+                                        <div class="col-sm-4">          
+                                            <input type="number" class="form-control" name="nombre" id="inputEmail3" placeholder="Nombre Categoria">
+                                        </div>
+                                        
+                                        <label for="inputEmail3" class="col-sm-2 col-form-label">Precio Venta</label>
+                                        <div class="col-sm-4">          
+                                            <input type="number" class="form-control" name="nombre" id="inputEmail3" placeholder="Nombre Categoria">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="inputPassword3" class="col-sm-2 col-form-label">Estado</label>
+                                        <div class="col-sm-4">
+                                            <select class="form-control" name="estado">
+                                                <option>SELECCIONAR</option>
+                                                <option value="1">ACTIVO</option>
+                                                <option value="0">INACTIVO</option>                                               
+                                            </select>
+                                        </div>                                      
                                     </div>
                                 </div>
                                 <!-- /.card-body -->
@@ -131,9 +174,15 @@ if(isset($_GET['idC'])){
                     <table id="example2" class="table table-bordered table-striped">
                         <thead>
                             <tr>
-                                <th>ID CATEGORIA</th>
-                                <th>Nombre Categoria</th>
+                                <th>ID</th>
+                                <th>Producto</th>
                                 <th>Descripcion</th>
+                                <th>Provedor</th>
+                                <th>Categoria</th>
+                                <th>Uni Medida</th>
+                                <th>Cantidad</th>
+                                <th>Compra</th>
+                                <th>Venta</th>
                                 <th>Estado</th>
                                 <th>Acciones</th>
                             </tr>
@@ -145,6 +194,12 @@ if(isset($_GET['idC'])){
                                 <tr>
                                     <td><?php echo $cat['idcategoria']; ?></td>
                                     <td><?php echo $cat['nombrecategoria']; ?></td>
+                                    <td><?php echo $cat['descripcion']; ?></td>
+                                    <td><?php echo $cat['estado']; ?></td>
+                                    <td><?php echo $cat['idcategoria']; ?></td>
+                                    <td><?php echo $cat['nombrecategoria']; ?></td>
+                                    <td><?php echo $cat['descripcion']; ?></td>
+                                    <td><?php echo $cat['estado']; ?></td>
                                     <td><?php echo $cat['descripcion']; ?></td>
                                     <td><?php echo $cat['estado']; ?></td>
                                     <td> 
@@ -195,3 +250,5 @@ include './footer.php';
         });
     });
 </script>
+
+
