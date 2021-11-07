@@ -1,8 +1,7 @@
 <?php
 
-
 class Productos {
-          
+
     private $IdProducto;
     private $IdProveedor;
     private $IdCategoria;
@@ -13,7 +12,7 @@ class Productos {
     private $precioventa;
     private $descripcion;
     private $estado;
-    
+
     function getIdProducto() {
         return $this->IdProducto;
     }
@@ -93,5 +92,67 @@ class Productos {
     function setEstado($estado) {
         $this->estado = $estado;
     }
+
+    function MostrarProducto() {
+        require_once '../bd/Conexion.php';
+        $conexion = new Conexion();
+        $conn = $conexion->abrirConexion();
+        $sql = "SELECT p.idproducto,p.idproveedor,p.idcategoria,p.nombre,p.cantidad,p.unidadmedida,p.preciocompra,p.precioventa,p.descripcion,p.estado,pro.nomcompania,c.nombrecategoria "
+                . " FROM productos as p inner join categorias as c ON p.idcategoria=c.idcategoria INNER JOIN proveedores as pro ON p.idproveedor=pro.idproveedor WHERE p.estado=1";
+        $conexion->cerrarConexion();
+        return $conn->query($sql);
+    }
+
+    function BuscarProducto($id) {
+        require_once '../bd/Conexion.php';
+        $conexion = new Conexion();
+        $conn = $conexion->abrirConexion();
+        $sql = "SELECT p.idproducto,p.idproveedor,p.idcategoria,p.nombre,p.cantidad,p.unidadmedida,p.preciocompra,p.precioventa,p.descripcion,p.estado,pro.nomcompania,c.nombrecategoria "
+                . " FROM productos as p inner join categorias as c ON p.idcategoria=c.idcategoria INNER JOIN proveedores as pro ON p.idproveedor=pro.idproveedor WHERE p.estado=1 AND p.idproducto=".$id;
+        $conexion->cerrarConexion();
+        return $conn->query($sql);
+    }
+
+    function GuardarProducto() {
+        require_once '../bd/Conexion.php';
+        $conexion = new Conexion();
+        $conn = $conexion->abrirConexion();
+        if ((int) $this->IdProducto != 0) {
+            $sql = "UPDATE productos SET "
+                    . "idproveedor='" . $this->IdProveedor . "',"
+                    . "idcategoria='" . $this->IdCategoria . "',"
+                    . "nombre='" . $this->nombre . "',"
+                    . "cantidad='" . $this->cantidad . "',"
+                    . "unidadmedida='" . $this->unidadmedida . "',"
+                    . "preciocompra='" . $this->preciocompra . "',"
+                    . "precioventa='" . $this->precioventa . "',"
+                    . "descripcion='" . $this->descripcion . "',"
+                    . "estado='" . $this->estado . "'"
+                    . " WHERE idproducto=" . $this->IdProducto;
+        } else {
+            $sql = "INSERT INTO productos(idproveedor,idcategoria,nombre,cantidad,unidadmedida,preciocompra,precioventa,descripcion,estado) VALUES "
+                    . "('" . $this->IdProveedor . "',"
+                    . "'" . $this->IdCategoria . "',"
+                    . "'" . $this->nombre . "',"
+                    . "'" . $this->cantidad . "',"
+                    . "'" . $this->unidadmedida . "',"
+                    . "'" . $this->preciocompra . "',"
+                    . "'" . $this->precioventa . "',"
+                    . "'" . $this->descripcion . "',"
+                    . "'" . $this->estado . "'"
+                    . ")";
+        }
+        $conn->query($sql);
+        $conexion->cerrarConexion();
+    }
     
+    function EliminarProducto($id) {
+        require_once '../bd/Conexion.php';
+        $conexion = new Conexion();
+        $conn = $conexion->abrirConexion();
+            $sql = "UPDATE productos SET estado=0 WHERE idproducto=".$id;
+        $conn->query($sql);
+        $conexion->cerrarConexion();
+    }
+
 }

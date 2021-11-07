@@ -13,7 +13,7 @@ class ControllerCategoria {
         $categoria = new Categoria();
         return $categoria->BuscarCategoria($id);
     }
-    
+
     public function GuardarCategoria(array $datos) {
         $categoria = new Categoria();
         if (isset($datos['idcategoria'])) {
@@ -24,9 +24,10 @@ class ControllerCategoria {
         $categoria->setEstado($datos['estado']);
         $categoria->GuardarCategoria();
     }
+
     public function eliminarCategoria($id) {
-       $categoria = new Categoria();
-       return  $categoria->EliminarCategoria($id);
+        $categoria = new Categoria();
+        return $categoria->EliminarCategoria($id);
     }
 
 }

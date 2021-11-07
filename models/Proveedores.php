@@ -85,5 +85,13 @@ class Proveedores {
     }
 
 
+    function MostrarProveedor() {
+        require_once '../bd/Conexion.php';
+        $conexion = new Conexion();
+        $conn = $conexion->abrirConexion();
+        $sql = "SELECT * FROM proveedores where estado=1 ";
+        $conexion->cerrarConexion();
+        return $conn->query($sql);
+    }
     
 }
